@@ -52,7 +52,7 @@ load(url("http://andrewshinsuke.me/cs125/DEMArray.RData"))
 #### Google Trends
 
 I would like to start by introducing Google Trends to you
-![This is What Google Trends looks like](http://andrewshinsuke.me/cs125/GoogleTrends.png)
+![This is What Google Trends looks like](GoogleTrends.png)
 
 With Google Trends, users can search for a term, and Google returns you with a graphical representation of the total search querries over time, regional interest, and related searches pertaining to the original search querries.
 
@@ -88,7 +88,7 @@ argDF <- sourcecsv
 ```
 
 Now here is a snapshot of the data provided.
-![What the CSV Looks like](http://andrewshinsuke.me/cs125/screenshot.jpg)
+![What the CSV Looks like](https://raw.githubusercontent.com/gilgameshskytrooper/PresidentialPlot/master/screenshot.jpg)
 
 You can see a few things that are immediately problematic for comparing the data
 First off, all the sources are thrown into one object with no meaningful separation. At the same time, each polling agency used their own unique timeframe. (For example, Ipsos/Reuters uses a 4 day timeframe while Quinnipiac uses a 7 day timeframe) My first step was to extract all these different parts, and save them into separate dataframes with a unified date structure.
@@ -96,14 +96,14 @@ First off, all the sources are thrown into one object with no meaningful separat
 In order to unify the date structures, I took the first day and the last day from each entry point, and created a range of dates in between the two dates, and then populating the new days with repeated data. At the same time, I proceeded to create a three dimentional array, which represents data from January 1, 2015 to December 31, 2015 (As Rows), Candidates (as Columns), and different polling sources (as the third dimention)
 
 Visualizing the data structure before programming it in R, I came up with something like this:
- ![Visualizing what I want](http://andrewshinsuke.me/cs125/array.jpg)
+ ![Visualizing what I want](https://raw.githubusercontent.com/gilgameshskytrooper/PresidentialPlot/master/array.jpg)
 
 So without further ado, here are the respective code for transforming the data for each party (GOP, and Democratic Party)
 
 
 #### Transforming the GOP data
 
-The following code can be found at http://andrewshinsuke.me/cs125/fixgop.r
+The following code can be found at [https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/fixgop.r](https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/fixgop.r)
 
 ```{r}
 fixday <- function(argDF) {
@@ -213,7 +213,7 @@ save(allGOP, file="GOPArray.RData")
 
 ####For the Democratic Party
 Here is the code for the Democratic Party's Array
-It can be found at http://andrewshinsuke.me/cs125/fixdem.r
+It can be found at [https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/fixdem.r](https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/fixdem.r)
 
 ```{r}
 #So the only real difference between this code and that of the fixgop.r file is that there were sources such as Wilson Perkins Allen polling that did not poll for the Democratic party. At the same time, there were alot less candidates for the Democratic party (as is the case much of the time for incumbant parties)
@@ -322,7 +322,7 @@ So now I created 2 Array's with all the data I needed, in a unified form to comp
 However, even with this organized form, in order to plot this in ggplot2 (which is designed to work with data that is organized so that each row is a different observation of an occurance, or thing, and different columns represent the differnt categories of data), whereas, my data was organized by different dates for rows, and the candidates for columns, I needed to melt the data to have the data points, a date column as a factor, a candidate column as a factor, so that I could graph it in ggplot2
 
 
-The following code can be found at: http://andrewshinsuke.me/cs125/source.r
+The following code can be found at: [https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/source.r](https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/source.r)
 
 ```{r}
 # Melting the dataframe using gather from the tidyr package
@@ -351,10 +351,10 @@ plotaverageDEMPoll <- ggplot(averagedDEMPoll.melt,aes(x=date,y=percentage,colour
 ggsave(plotaverageGOPPoll, file="plotaverageDEMPoll.png")
 ```
 Visualizing the GOP Averaged Polls looks like this:
-![GOP Poll](http://andrewshinsuke.me/cs125/plotaverageGOPPoll.png)
+![GOP Poll](https://raw.githubusercontent.com/gilgameshskytrooper/PresidentialPlot/master/GOPPoll.png)
 
 Visualizing the Democratic Polls looks like this:
-![DEM Poll](http://andrewshinsuke.me/cs125/plotaverageDEMPoll.png)
+![DEM Poll](https://raw.githubusercontent.com/gilgameshskytrooper/PresidentialPlot/master/DEMPoll.png)
 
 
 ####Taking a step back to think about the data
@@ -382,7 +382,7 @@ I did this by checking each element of the Percentages column of the goppolls to
 
 Next, I needed to create a new column that recorded the change in percentages from one day to the next. This algorithm just went through the Percentages column and subtracted Percentage[i] from Percentage[i-1].
 
-The following code can be found at: http://andrewshinsuke.me/cs125/makeGOPBubble.r
+The following code can be found at: [https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/makeGOPBubble.r](https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/makeGOPBubble.r)
 
 ```{r}
 load(url("http://andrewshinsuke.me/cs125/avgGOP.RData"))
@@ -430,7 +430,7 @@ save(gopbubbleDF, file="gopbubbledf.RData")
 ####Reformatting the Data Frame in Bubble form for the Democratic Party
 
 The process for the democratic party was basically exactly the same
-source code is at: http://andrewshinsuke.me/cs125/makeDEMBubble.r
+source code is at: [https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/makeDEMBubble.r](https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/makeDEMBubble.r)
 
 ```{r}
 load(url("http://andrewshinsuke.me/cs125/avgDEM.RData"))
@@ -485,7 +485,7 @@ The second option was to produce the motion picture using the animation package.
 (as a note, the code can only be run through a special environment I have set up. If you want to recreate this process, there are notes in the code)
 
 ####Creating the PNG's for the Democratic Party
-source code is at: http://andrewshinsuke.me/cs125/saveDEMVideo.r
+source code is at: [https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/makeGOPBubble.r](https://github.com/gilgameshskytrooper/PresidentialPlot/blob/master/makeGOPBubble.r)
 
 ```{r}
 ##CODE WILL NOT WORK AS IS to PRODUCE THE 365 PNG'S ALTHOUGH IT WILL RUN WITHOUT A PROBLEM
