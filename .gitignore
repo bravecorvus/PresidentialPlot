@@ -3,28 +3,7 @@ Thumbs.db
 .nfs*
 *~
 \#*\#
-pres_trend_plot.png
-*.png
 */animation_temp
 */DEMPlots
 */GOPPlots
 */Huffington Post
-
-
-# Images
-*.pbm
-*.ppm
-*.pam
-*.jpg
-*.jpeg
-*.tiff
-*.png
-*.gif
-*.webp
-
-# Audio
-*.wav
-*.raw
-*.mp3
-*.aac
-*.m4a

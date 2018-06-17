@@ -8,7 +8,7 @@ output: html_document
 
 
 
-![Masthead](http://andrewshinsuke.me/cs125/masthead.jpg)
+![Masthead](https://raw.githubusercontent.com/gilgameshskytrooper/PresidentialPlot/master/masthead.jpg)
 
 
 
